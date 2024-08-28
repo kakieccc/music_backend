@@ -26,13 +26,13 @@ public class MinioController {
     @Resource
     private MinioClient minioClient;
     //获取歌曲
-    @GetMapping("/{fileName:.+}")
+    @GetMapping("/song/{fileName:.+}")
     @Operation(summary = "获取歌曲")
     public ResponseEntity<byte[]> getMusic(@PathVariable String fileName) {
         try {
             GetObjectArgs args = GetObjectArgs.builder()
                     .bucket(bucketName)
-                    .object(fileName)
+                    .object("song/"+fileName)
                     .build();
             InputStream inputStream = minioClient.getObject(args);
 

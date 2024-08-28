@@ -47,7 +47,7 @@ public class SongServiceImpl extends ServiceImpl<SongMapper, Song> implements So
         String pic = "/img/songPic/tubiao.jpg";
         String fileName = mpfile.getOriginalFilename();
         String s = MinioUploadController.uploadFile(mpfile);
-        String storeUrlPath = "/"+bucketName+"/" + fileName;
+        String storeUrlPath = "/song/" + fileName;
         song.setCreateTime(new Date());
         song.setUpdateTime(new Date());
         song.setPic(pic);

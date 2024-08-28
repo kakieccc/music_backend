@@ -46,7 +46,7 @@ public class MinioUploadController {
             minioClient.putObject(
                     PutObjectArgs.builder()
                             .bucket(bucketName)
-                            .object(file.getOriginalFilename())
+                            .object("/song/"+file.getOriginalFilename())
                             .stream(inputStream, inputStream.available(), -1)
                             .contentType(file.getContentType())
                             .build()
