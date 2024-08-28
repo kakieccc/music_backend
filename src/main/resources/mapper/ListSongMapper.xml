@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kakie.music_backend.mapper.ListSongMapper">
+
+    <resultMap id="BaseResultMap" type="com.kakie.music_backend.model.entity.ListSong">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="songId" column="song_id" jdbcType="INTEGER"/>
+            <result property="songListId" column="song_list_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,song_id,song_list_id
+    </sql>
+</mapper>

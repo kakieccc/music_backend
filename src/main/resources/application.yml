@@ -1,0 +1,45 @@
+mybatis:
+  type-aliases-package: com.kakie.music.model.domain
+  mapper-locations: classpath:mapper/*.xml
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  devtools:
+    restart:
+      enabled: false
+      additional-paths: src/main/java
+      exclude: WEB-INF/**
+  profiles:
+    active: dev
+
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 0
+      timeout: 1800000
+
+server:
+  port: 8888
+
+logging:
+  level:
+    org.springframework.boot.autoconfigure: ERROR
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+knife4j:
+  enable: true
+  production: false
+  base-package: com.kakie.music_backend.controller
+  markdownFilesPath: classpath:/markdown
+  paths:
+    - /v3/api-docs/**
+  setting:
+    language: zh_cn
