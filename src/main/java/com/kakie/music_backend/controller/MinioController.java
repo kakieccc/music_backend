@@ -52,10 +52,29 @@ public class MinioController {
         }
     }
 
+    //获取轮播图图片
+    @GetMapping("/img/swiper/{fileName:.+}")
+    @Operation(summary = "获取轮播图图片")
+    public ResponseEntity<byte[]> getImage_swiper(@PathVariable String fileName) throws Exception {
+        InputStream stream = minioClient.getObject(
+                GetObjectArgs.builder()
+                        .bucket(bucketName)
+                        .object("img/swiper/"+fileName)
+                        .build()
+        );
+
+        byte[] bytes = IOUtils.toByteArray(stream);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG); // 设置响应内容类型为图片类型，根据实际情况修改
+
+        return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
+    }
+
     //获取歌手图片
     @GetMapping("/img/singerPic/{fileName:.+}")
     @Operation(summary = "获取歌手图片")
-    public ResponseEntity<byte[]> getImage(@PathVariable String fileName) throws Exception {
+    public ResponseEntity<byte[]> getImage_singer(@PathVariable String fileName) throws Exception {
         InputStream stream = minioClient.getObject(
                 GetObjectArgs.builder()
                         .bucket(bucketName)
@@ -73,7 +92,7 @@ public class MinioController {
     //获取歌单图片
     @GetMapping("/img/songListPic/{fileName:.+}")
     @Operation(summary = "获取歌单图片")
-    public ResponseEntity<byte[]> getImage1(@PathVariable String fileName) throws Exception {
+    public ResponseEntity<byte[]> getImage_singList(@PathVariable String fileName) throws Exception {
         InputStream stream = minioClient.getObject(
                 GetObjectArgs.builder()
                         .bucket(bucketName)
@@ -92,7 +111,7 @@ public class MinioController {
     //获取歌的图片
     @GetMapping("/img/songPic/{fileName:.+}")
     @Operation(summary = "获取歌的图片")
-    public ResponseEntity<byte[]> getImage2(@PathVariable String fileName) throws Exception {
+    public ResponseEntity<byte[]> getImage_song(@PathVariable String fileName) throws Exception {
         InputStream stream = minioClient.getObject(
                 GetObjectArgs.builder()
                         .bucket(bucketName)
@@ -107,10 +126,11 @@ public class MinioController {
 
         return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
     }
+
     //获取头像
     @GetMapping("/img/avatorImages/{fileName:.+}")
     @Operation(summary = "获取头像")
-    public ResponseEntity<byte[]> getImage3(@PathVariable String fileName) throws Exception {
+    public ResponseEntity<byte[]> getImage_avatar(@PathVariable String fileName) throws Exception {
         InputStream stream = minioClient.getObject(
                 GetObjectArgs.builder()
                         .bucket(bucketName)
